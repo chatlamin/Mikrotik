@@ -1,0 +1,52 @@
+:log warn "Starting Automatic Backup FTP Script"
+
+### Zadaem nastroiki
+:local ftphost "192.168.0.1"
+:local ftpuser "user"
+:local ftppassword "password"
+:local ftppath "/backup-mikrotik/test"
+
+### Zadaem mesyaca
+:local months ("jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec");
+
+### Zadaem vremya
+:local ts [/system clock get time]
+:set ts ([:pick $ts 0 2].[:pick $ts 3 5].[:pick $ts 6 8])
+
+### Zadaem datu
+:local ds [/system clock get date]
+
+### Konvertiruem mesyac -> chislo
+:local month [ :pick $ds 0 3 ];
+:local mm ([ :find $months $month -1 ] + 1);
+:if ($mm < 10) do={ :set mm ("0" . $mm); }
+
+### Zadaem datu $ds v formate YYYY-MM-DD
+:set ds ([:pick $ds 7 11] . $mm . [:pick $ds 4 6])
+
+### Zadaem imya binarnogo backupa
+:local fname1 ("/Mikrotik-".[/system identity get name]."-".$ds."-".$ts.".backup")
+
+### Zadaem imya tekstovogo backupa
+:local fname2 ("/Mikrotik-".[/system identity get name]."-".$ds."-".$ts.".rsc")
+
+### Delaem binarnii i tekstovii backup
+/system backup save dont-encrypt=yes name=$fname1
+:log info "System backup finished"
+/export compact file=$fname2
+:log info "Config export finished"
+
+### Zagruzaem binarnii backup na FTP server
+:log info "Uploading system backup"
+/tool fetch address="$ftphost" src-path=$fname1 user="$ftpuser" mode=ftp password="$ftppassword" dst-path="$ftppath/$fname1" upload=yes
+
+### Zagruzaem tekstovii backup na FTP server
+:log info "Uploading config export"
+/tool fetch address="$ftphost" src-path=$fname2 user="$ftpuser" mode=ftp password="$ftppassword" dst-path="$ftppath/$fname2" upload=yes
+
+### Zdem zaversheniya zagruzki
+:delay 30s;
+
+### Udalyaem lokalnii backup
+:foreach i in=[/file find] do={ :if ([:typeof [:find [/file get $i name] "Mikrotik-"]]!="nil") do={/file remove $i}; }
+:log warn "Finished Backup FTP Script"
