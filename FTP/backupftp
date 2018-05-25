@@ -1,0 +1,31 @@
+:log warn "Starting Automatic Backup FTP Script"
+
+### Zadaem nastroiki
+:global backupfilename [/system identity get name]
+:local ftpusername "user"
+:local ftpuserpassword "password"
+:local ftphostname "192.168.0.1"
+:local ftppath "/backup-mikrotik/test"
+
+### Delaem binarnii backup
+/system backup save dont-encrypt=yes name="$backupfilename"
+:delay 5s
+
+### Delaem tekstovii backup
+/export compact file="$backupfilename"
+:log info "Please wait"
+:delay 5s
+
+### Otpravlyaem binarnii backup na FTP server
+:log info "Sending Backup Mikrotik to FTP Server"
+/tool fetch address="$ftphostname" src-path="$backupfilename.backup" user="$ftpusername" password="$ftpuserpassword" port=21 upload=yes mode=ftp dst-path="$ftppath/$backupfilename.backup"
+:delay 3s
+
+### Otpravlyaem tekstovii backup na FTP server
+/tool fetch address="$ftphostname" src-path="$backupfilename.rsc" user="$ftpusername" password="$ftpuserpassword" port=21 upload=yes mode=ftp dst-path="$ftppath/$backupfilename.rsc"
+:delay 30s
+
+### Chistim localnii backup
+/file remove "$backupfilename.backup"
+/file remove "$backupfilename.rsc"
+:log warn "Finished Backup FTP Script"
