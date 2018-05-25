@@ -1,0 +1,16 @@
+:log info "Log Backup Sended to email...";
+:local sysname [/system identity get name];
+:local sysver [/system package get system version];
+#read log
+:local logcontent
+:foreach int in=[/log find ] do={
+:set logcontent ("$logcontent\r\n" .[/log get $int time]. " - " .[/log get $int message])
+}
+#send email
+/tool e-mail send to="myemail@gmail.com" subject=([/system identity get name] . " Log " . [/system clock get date]) body=("Log of $sysname\nRouterOS version: \
+$sysver\nTime and Date stamp: " . [/system clock get time] . " " . [/system clock get date] . "\n " . \
+$logcontent);
+#delete old log
+/system logging action set memory memory-lines=1
+/system logging action set memory memory-lines=65000
+:log info "System log cleared by email-log-backup script...";
