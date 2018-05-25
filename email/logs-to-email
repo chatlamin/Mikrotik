@@ -1,3 +1,8 @@
+### Задай настройки почты-отправителя
+### Пример:
+### /tool e-mail
+### set address=209.85.233.108 from=emailsender@gmail.com password=mypassword port=587 start-tls=yes user=emailsender
+
 :log info "Log Backup Sended to email...";
 :local sysname [/system identity get name];
 :local sysver [/system package get system version];
