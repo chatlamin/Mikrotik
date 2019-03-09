@@ -21,7 +21,7 @@ set winbox address=192.168.88.0/24
 set api-ssl disabled=yes
 /interface wireless cap
 set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1,wlan2
-
+/
 
 
 
