@@ -1,3 +1,5 @@
+/system reset-configuration no-defaults=yes
+
 /interface bridge
 add name=bridge-local protocol-mode=none
 /interface bridge port
