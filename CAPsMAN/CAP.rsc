@@ -1,5 +1,7 @@
+### Делаем reset config. Нужен чистый микротик
 /system reset-configuration no-defaults=yes
 
+### После перезагрузки делаем:
 /interface bridge
 add name=bridge-local protocol-mode=none
 /interface bridge port
@@ -25,5 +27,10 @@ set api-ssl disabled=yes
 set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1,wlan2
 /
 
+### Если у вас однодиапазонный микротик, то вместо
+
+    set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1,wlan2
+делаем 
+    set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1
 
 
