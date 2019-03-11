@@ -1,3 +1,6 @@
+# Делаем reset config. Нужен чистый микротик
+/system reset-configuration no-defaults=yes
+# После перезагрузки:
 # Interfaces
 /interface ethernet
     set [ find default-name=ether1 ] name=ether1-gateway
