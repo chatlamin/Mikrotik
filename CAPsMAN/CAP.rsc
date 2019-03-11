@@ -28,9 +28,8 @@ set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=w
 /
 
 ### Если у вас однодиапазонный микротик, то вместо
-
-    set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1,wlan2
+set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1,wlan2
 делаем 
-    set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1
+set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1
 
 
