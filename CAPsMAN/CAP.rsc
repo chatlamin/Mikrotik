@@ -23,13 +23,10 @@ set ssh disabled=yes
 set api disabled=yes
 set winbox address=192.168.88.0/24
 set api-ssl disabled=yes
+### Если у вас однодиапазонный микротик, делаем interfaces=wlan1
 /interface wireless cap
 set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1,wlan2
 /
 
-### Если у вас однодиапазонный микротик, то вместо
-set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1,wlan2
-делаем 
-set bridge=bridge-local caps-man-addresses=192.168.88.1 enabled=yes interfaces=wlan1
 
 
