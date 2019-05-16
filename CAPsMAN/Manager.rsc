@@ -1,6 +1,6 @@
-# Делаем reset config. Нужен чистый микротик
+# Reset config
 /system reset-configuration no-defaults=yes
-# После перезагрузки:
+
 
 # Interfaces
 /interface ethernet
