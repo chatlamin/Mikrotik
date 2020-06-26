@@ -131,10 +131,10 @@
     add authentication-types=wpa-psk,wpa2-psk encryption=aes-ccm group-encryption=aes-ccm name=security-free passphrase=1234qwer
     add authentication-types=wpa-psk,wpa2-psk encryption=aes-ccm group-encryption=aes-ccm name=security-office passphrase=12345qwert
 /caps-man configuration
-    add channel=channel-auto-2.4 datapath=datapath-free name=cfg-2.4-free security=security-free ssid=free-wifi-2.4
-    add channel=channel-auto-2.4 datapath=datapath-office name=cfg-2.4-office security=security-office ssid=office-wifi-2.4
-    add channel=channel-auto-5 datapath=datapath-free name=cfg-5-free security=security-free ssid=free-wifi-5
-    add channel=channel-auto-5 datapath=datapath-office name=cfg-5-office security=security-office ssid=office-wifi-5
+    add channel=channel-auto-2.4 datapath=datapath-free name=cfg-2.4-free security=security-free ssid=free-wifi-2.4 country=russia3
+    add channel=channel-auto-2.4 datapath=datapath-office name=cfg-2.4-office security=security-office ssid=office-wifi-2.4 country=russia3
+    add channel=channel-auto-5 datapath=datapath-free name=cfg-5-free security=security-free ssid=free-wifi-5 country=russia3
+    add channel=channel-auto-5 datapath=datapath-office name=cfg-5-office security=security-office ssid=office-wifi-5 country=russia3
 /caps-man manager
     set enabled=yes
 /caps-man provisioning
