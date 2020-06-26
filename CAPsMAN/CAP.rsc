@@ -24,7 +24,7 @@
     set winbox address=192.168.100.0/24
     set api-ssl disabled=yes
 /interface wireless cap
-    set bridge=bridge-local caps-man-addresses=192.168.100.1 enabled=yes interfaces=wlan1,wlan2
+    set caps-man-addresses=192.168.100.1 enabled=yes interfaces=wlan1,wlan2
 
 /system clock
     set time-zone-name=Europe/Moscow
