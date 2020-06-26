@@ -43,6 +43,6 @@
 /system logging action
     set [ find name=memory ] memory-lines=1000
 
-system package update download
+/system package update download
 
 /execute "/system reboot"
